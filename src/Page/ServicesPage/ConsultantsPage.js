@@ -1,6 +1,6 @@
 import PicContainer from "../../components/PicContainer";
 import ContentPic from "../../components/ContentPic";
-import ContentDescBlock from "../../ContentDescBlock/ContentDescBlock";
+import ContentDescBlock from "../../components/ContentDescBlock/ContentDescBlock";
 import Survey from "../../components/Survey/Survey";
 //wsaeada
 
