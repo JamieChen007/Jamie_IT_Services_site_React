@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +10,1574 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+@import "https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";
+:root {
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 1950px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: barlow, sans-serif;
+  overflow-x: hidden;
+}
+
+.navbar {
+  max-width: 1950px;
+  position: fixed;
+  height: 8rem;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: #015b86;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease;
+}
+.navbar .sitename {
+  font-weight: 800;
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  left: 15rem;
+  width: calc(40% - 15rem);
+  cursor: pointer;
+}
+.navbar .sitename a {
+  text-decoration: none;
+  color: white;
+}
+.navbar .sitename a:hover {
+  color: black;
+  transition: color 1s ease;
+}
+
+.navbar.active {
+  height: 6rem;
+  background-color: white;
+}
+.navbar.active .sitename a {
+  color: black;
+}
+.navbar.active .navbarLink a {
+  color: black;
+}
+.navbar.active .navbarLink a:hover {
+  color: #015b86;
+}
+.navbar.active .navdropdownContainer a:hover {
+  color: white;
+}
+.navbar.active .navbarLink .navbarChosen {
+  color: #015b86;
+}
+
+.navbarLink {
+  width: calc(60% - 15rem);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.2rem;
+  position: absolute;
+  right: 15rem;
+  height: 100%;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.navbarLink .navbarLinkList {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: end;
+  margin: 0;
+  height: 100%;
+}
+.navbarLink .navbarLinkList .navLinkListCtn {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbarLink .navbarLinkList.hide {
+  width: 0;
+  visibility: hidden;
+}
+.navbarLink .navbarLinkList.mobile {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: flex-start;
+  /* top: 8rem; */
+  height: 10rem;
+  width: 100vw;
+  background-color: #37b2dd;
+  visibility: visible;
+  transition: height 1s ease-in-out;
+}
+.navbarLink .navbarLinkList.mobile .navLinkListCtn,
+.navbarLink .navbarLinkList.mobile .navdropdownContainer {
+  height: 2.5rem;
+  width: 10rem;
+  margin: 0;
+  padding: 0;
+}
+.navbarLink .navbarLinkList.mobile .navLinkListCtn .navServices,
+.navbarLink .navbarLinkList.mobile .navdropdownContainer .navServices {
+  padding: 0;
+}
+.navbarLink .navbarLinkList.mobile .navLinkListCtn {
+  display: flex;
+  justify-content: flex-start;
+}
+.navbarLink .navbarLinkList.mobile .navLinkListCtn a {
+  margin: 0;
+  padding: 0;
+}
+.navbarLink a {
+  text-decoration: none;
+  color: white;
+  margin: 0.5rem;
+  padding: 0 0.3rem;
+}
+.navbarLink a:hover,
+.navbarLink a:active {
+  color: black;
+}
+.navbarLink .navbarChosen {
+  color: black;
+}
+.navbarLink .navMobileBtn {
+  background-color: white;
+  color: #015b86;
+  border: 1px solid #015b86;
+  border-radius: 10px;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  display: none;
+}
+.navbarLink .navMobileBtn.show {
+  display: flex;
+}
+.navbarLink .navMobileBtn i {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.1rem;
+}
+
+.navdropdownContainer {
+  position: relative;
+  height: 100%;
+}
+.navdropdownContainer:hover {
+  background-color: #37b2dd;
+}
+.navdropdownContainer .navServices {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
+
+.navDropdownList {
+  opacity: 0;
+  position: absolute;
+  width: 30rem;
+  height: 800px;
+  -webkit-padding-start: 0;
+  padding-inline-start: 0;
+  visibility: hidden;
+}
+.navDropdownList li {
+  display: flex;
+  flex-direction: column;
+  background-color: #37b2dd;
+}
+.navDropdownList li a {
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid white;
+}
+.navDropdownList.open {
+  opacity: 1;
+  visibility: visible;
+  transition: all 1s ease-in-out;
+}
+
+.homePic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/business-it-services-sydney.jpeg");
+}
+
+.aboutUsPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/shutterstock_141093727_hero_1_1919x559_acf_cropped.jpg");
+}
+
+.contactUsPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/Cyber-Security-Consultants-Sydney-4-scaled.jpg");
+}
+
+.consultantsPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/shutterstock_1039039435_it_consulting_1919x559_acf_cropped.jpg");
+}
+
+.backUpSolutionsPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/shutterstock_664638928_it_backup_1919x559_acf_cropped.jpg");
+}
+
+.managedITPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/essential-it-header-image.webp");
+}
+
+.itProcumentPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/shutterstock_156997538_1919x559_acf_cropped.jpg");
+}
+
+.mainContent {
+  width: 100%;
+  margin-top: 8rem;
+}
+
+.picContainer {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: 37.5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 0;
+}
+.picContainer::before {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.53);
+  z-index: 0;
+}
+.picContainer h1 {
+  font-weight: 1000;
+  color: white;
+  font-size: 3rem;
+  letter-spacing: 0.3rem;
+  z-index: 1;
+}
+.picContainer h2 {
+  color: white;
+  font-size: 2rem;
+  line-height: 1.1em;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  z-index: 1;
+}
+.picContainer p {
+  width: 50%;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.1em;
+  z-index: 1;
+}
+
+.quoteBtn {
+  background: #37b2dd;
+  color: white;
+  width: 20rem;
+  height: 5rem;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  border-radius: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+}
+.quoteBtn:active,
+.quoteBtn:hover {
+  background: #337ab7;
+}
+
+.chooseReasons {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  height: 25rem;
+}
+.chooseReasons .chooseReason {
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25rem;
+}
+.chooseReasons .chooseReason i {
+  color: #37b2dd;
+  font-size: 4rem;
+}
+.chooseReasons .chooseReason h2 {
+  color: #37b2dd;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.chooseReasons .chooseReason p {
+  font-family: "Poppins", Sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  color: darkgray;
+}
+
+.article {
+  width: 80%;
+  margin: auto;
+}
+.article h2 {
+  font-size: 2rem;
+  line-height: 2rem;
+  -webkit-text-stroke: 1px #015b86;
+  -webkit-text-fill-color: transparent;
+}
+.article p {
+  font-size: 1.2rem;
+}
+
+.workWithReasons {
+  margin: auto;
+  width: 100%;
+  padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50rem;
+  background-color: #e8f1f6;
+}
+.workWithReasons .subTitle {
+  color: #37b2dd;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.workWithReasons .workWithReasonsQuestion {
+  font-size: 2rem;
+  color: #015b86;
+}
+.workWithReasons .workWithReasonCtn {
+  display: flex;
+  justify-content: space-evenly;
+}
+.workWithReasons .workWithReasonCtn .workWithReason {
+  width: 33.33%;
+  padding-top: 2rem;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 25rem;
+}
+.workWithReasons .workWithReasonCtn .workWithReason i {
+  color: #37b2dd;
+  font-size: 4rem;
+}
+.workWithReasons .workWithReasonCtn .workWithReason h2 {
+  text-align: center;
+  color: #015b86;
+  font-size: 1.5rem;
+}
+.workWithReasons .workWithReasonCtn .workWithReason p {
+  font-family: "Poppins", Sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+  color: darkgray;
+}
+
+.socialMedia {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  height: 25rem;
+}
+.socialMedia .twitter,
+.socialMedia .youtube,
+.socialMedia .facebook {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.socialMedia .twitterlogo {
+  color: #5da9dd;
+  margin: 1.2rem;
+}
+.socialMedia .youtubelogo {
+  color: #ff0000;
+  margin: 1.2rem;
+}
+.socialMedia .facebooklogo {
+  color: #1877f2;
+  margin: 1.2rem;
+}
+.socialMedia .twitterFollowers,
+.socialMedia .youtubeFollowers,
+.socialMedia .facebookFollowers {
+  font-size: 2.5rem;
+  margin: 1.2rem;
+}
+.socialMedia .twitterDes,
+.socialMedia .youtubeDes,
+.socialMedia .facebookDes {
+  font-size: 1.2rem;
+  margin: 1.2rem;
+}
+
+.foot {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.aboutUsInfo {
+  width: 70%;
+  font-size: 1.5rem;
+  padding: 2rem;
+  color: darkgray;
+  margin: auto;
+  font-weight: 500;
+  line-height: 2rem;
+  letter-spacing: 0.1rem;
+  border-bottom: 1px solid black;
+}
+
+.teamMembers {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  transform: none;
+}
+
+.teamMember {
+  height: 20rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid #015b86;
+  border-radius: 2rem;
+  margin: 1rem;
+  box-shadow: 1px 1px 3px;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+.teamMember:hover {
+  box-shadow: 10px 10px 10px;
+}
+.teamMember:nth-of-type(odd) {
+  transform: translateX(400%);
+}
+.teamMember:nth-of-type(even) {
+  transform: translateX(-400%);
+}
+.teamMember.show {
+  transform: translateX(0);
+}
+.teamMember .avatar {
+  border-radius: 50%;
+  border: 0.5rem solid #2a2a72;
+  height: 10rem;
+  width: 10rem;
+  margin: 1rem;
+}
+
+.teamMemberInfo {
+  padding: 0 1rem;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.teamMemberInfo .teamMemberName {
+  font-size: 2rem;
+  font-weight: 400;
+}
+.teamMemberInfo .teamMemberTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.teamMemberInfo .teamMemberTitle::before {
+  content: "Position:";
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.teamMemberInfo .teamMemberLinkedin,
+.teamMemberInfo .teamMemberBlog,
+.teamMemberInfo .teamMemberGithub {
+  font-size: 2rem;
+  color: #0a66c2;
+  margin: 0.3rem;
+}
+.teamMemberInfo .teamMemberLink {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.contactUsInfo {
+  width: 90%;
+  margin: auto;
+  display: flex;
+}
+
+.contactForm {
+  width: 50%;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.contactForm h2 {
+  font-size: 1.8rem;
+  color: darkgray;
+}
+.contactForm p {
+  font-size: 1.2rem;
+  color: gray;
+}
+.contactForm .contactFormInput {
+  width: 100%;
+  font-size: 1.2rem;
+}
+.contactForm .contactFormInput label {
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+.contactForm .contactFormInput label::after {
+  content: "*";
+  color: red;
+  margin-left: 0.5rem;
+}
+.contactForm .contactFormInput .formSubmit input {
+  border: 0;
+  background-color: #015b86;
+  color: white;
+  font-weight: 400;
+  border-radius: 1rem;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+.contactForm .contactFormInput .formSubmit input:hover,
+.contactForm .contactFormInput .formSubmit input:active {
+  background-color: #02415c;
+}
+.contactForm .contactFormInput input {
+  background-color: #f5f8fa;
+  width: 20rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  border: none;
+}
+.contactForm .contactFormInput input:focus {
+  outline: none;
+  border: 1px solid;
+  border-color: rgba(82, 126, 238, 0.8);
+}
+.contactForm .contactFormInput textArea {
+  border: none;
+  background-color: #f5f8fa;
+  width: 40rem;
+  font-size: 1.2rem;
+}
+.contactForm .contactFormInput textArea:focus {
+  outline: none;
+  border: 1px solid;
+  border-color: rgba(82, 126, 238, 0.8);
+}
+.contactForm .contactFormInput fieldset {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+.contactForm .contactFormInput fieldset div {
+  display: flex;
+  flex-direction: column;
+}
+.contactForm .contactFormInput fieldset div:first-child {
+  margin-right: 2rem;
+}
+
+.borderNone {
+  border: none;
+}
+
+.companyDetails {
+  width: 50%;
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.companyDetails h2 {
+  font-size: 1.8rem;
+  color: darkgray;
+}
+.companyDetails p {
+  font-size: 1.2rem;
+  color: gray;
+}
+.companyDetails a {
+  text-decoration: none;
+  color: #015b86;
+}
+
+iframe {
+  width: 600px;
+  height: 450px;
+}
+
+.contactSlogan {
+  height: 20rem;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.contactSlogan::before {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background-color: rgba(5, 90, 133, 0.86);
+}
+.contactSlogan h3 {
+  z-index: 999;
+  font-size: 2rem;
+  font-family: "AvenirLTStd65Medium_5175";
+  color: white;
+}
+.contactSlogan h3 span {
+  color: rgba(255, 255, 255, 0.77);
+  font-family: "AvenirLTStdLight";
+  font-style: italic;
+}
+.contactSlogan .phoneBtn {
+  margin: 1rem;
+  z-index: 999;
+  border: 0;
+  background-color: #3ebee9;
+  color: white;
+  font-weight: 400;
+  height: 5rem;
+  width: 20rem;
+  font-size: 1.8rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.contactSlogan .phoneBtn:hover,
+.contactSlogan .phoneBtn:active {
+  background-color: rgba(62, 190, 233, 0.7);
+}
+.contactSlogan .phoneBtn a {
+  color: white;
+  text-decoration: none;
+}
+
+.survey {
+  background-color: #e8f1f6;
+  width: 100%;
+  height: 60rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.survey h2 {
+  font-size: 1.8rem;
+  color: #015b86;
+  text-align: center;
+}
+.survey h4 {
+  font-size: 2rem;
+  color: black;
+  font-weight: 300;
+  text-align: center;
+}
+.survey .surveyQuestions {
+  font-size: 1.5rem;
+  margin: 0.2rem 0;
+  height: 30rem;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.surveyQuestion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 100%;
+}
+.surveyQuestion .surveyQuestionDetail,
+.surveyQuestion .answerOption {
+  margin: 0.5rem 0;
+}
+.surveyQuestion .surveyQuestionDetail input,
+.surveyQuestion .answerOption input {
+  zoom: 1.5;
+}
+.surveyQuestion.hide {
+  display: none;
+}
+.surveyQuestion .contactForm {
+  margin: 0 auto;
+  width: 100%;
+}
+.surveyQuestion .contactForm input {
+  width: 100%;
+}
+.surveyQuestion .contactForm fieldset {
+  width: 100%;
+}
+.surveyQuestion .contactForm fieldset div {
+  width: 50%;
+}
+.surveyQuestion .contactForm fieldset div input {
+  width: 100%;
+}
+.surveyQuestion .contactForm fieldset div textArea {
+  height: 8rem;
+  width: 200%;
+}
+
+.stepContainer {
+  display: flex;
+  justify-content: center;
+}
+.stepContainer .stepCurrent {
+  border: 0.25rem solid #015b86;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  transition: 1s ease-in;
+}
+.stepContainer .step {
+  border: 0.25rem solid #e0e0e0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  transition: 1s ease-in;
+}
+.stepContainer .line {
+  background-color: darkgray;
+  width: 5rem;
+  height: 0.1rem;
+  margin: auto;
+  transition: 1s ease-in;
+}
+.stepContainer .lineLink {
+  background-color: #015b86;
+  width: 5rem;
+  height: 0.1rem;
+  margin: auto;
+  transition: 1s ease-in;
+}
+
+.button_container {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.button_container .step_button {
+  background-color: darkgray;
+  cursor: not-allowed;
+  width: 8rem;
+  height: 3rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  border: none;
+  color: white;
+}
+.button_container .step_button_active {
+  background-color: #015b86;
+  cursor: pointer;
+  width: 8rem;
+  height: 3rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  border: none;
+  color: white;
+}
+.button_container .step_button_active:active {
+  transform: scale(0.98);
+}
+.button_container .step_button_active:hover {
+  background-color: #37b2dd;
+}
+
+.contentDescBlock {
+  width: 80%;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid darkgray;
+}
+.contentDescBlock h3 {
+  font-size: 2rem;
+  color: #37b2dd;
+}
+.contentDescBlock h2 {
+  font-size: 1.8rem;
+  color: #015b86;
+}
+.contentDescBlock .contentDescDetail {
+  display: flex;
+}
+.contentDescBlock .contentDescDetail h4 {
+  font-size: 1.5rem;
+  color: #015b86;
+}
+.contentDescBlock .contentDescDetail p {
+  font-size: 1.2rem;
+  color: darkgray;
+}
+.contentDescBlock .contentDescDetail div {
+  width: 50%;
+  padding: 0 1rem;
+}
+.contentDescBlock .contentDescDetail div ul {
+  list-style: none;
+  font-size: 1.2rem;
+  color: #555;
+}
+.contentDescBlock .contentDescDetail .contactUsBtn {
+  background-color: #37b2dd;
+  width: 10rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.contentDescBlock .contentDescDetail .contactUsBtn a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  text-transform: capitalize;
+}
+.contentDescBlock .contentDescDetail .contactUsBtn:hover,
+.contentDescBlock .contentDescDetail .contactUsBtn:active {
+  background-color: #015b86;
+}
+
+.contentPic {
+  margin: 2rem auto;
+  width: 80%;
+  height: 20rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.supportContentPic,
+.managedITContentPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/small-business-it-support-sydney.webp");
+}
+
+.consultantContentPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/it_consulting.jpg.webp");
+}
+
+.backupContentPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/it_backup_solutions-1024x350.jpg.webp");
+}
+
+.procurementContentPic {
+  background-image: url("https://jamieitservices.s3.ap-southeast-2.amazonaws.com/it_equipment_procurement.jpg.webp");
+}
+
+@media screen and (max-width: 1650px) {
+  .navbar .sitename {
+    left: 10rem;
+    width: calc(40% - 10rem);
+  }
+  .navbarLink {
+    right: 10rem;
+  }
+  .navbarLinkList.mobile {
+    right: -10rem;
+  }
+  .contactForm .contactFormInput input {
+    width: 16rem;
+  }
+  .contactForm .contactFormInput textArea {
+    width: 36rem;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .navbar .sitename {
+    left: 5rem;
+    width: calc(40% - 5rem);
+  }
+  .navbarLink {
+    right: 5rem;
+  }
+  .navbarLinkList.mobile {
+    right: -5rem;
+  }
+  .contactForm .contactFormInput input {
+    width: 12rem;
+  }
+  .contactForm .contactFormInput textArea {
+    width: 30rem;
+  }
+  iframe {
+    width: 400px;
+    height: 280px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .contactForm .contactFormInput input {
+    width: 10rem;
+  }
+  .contactForm .contactFormInput textArea {
+    width: 25rem;
+  }
+  iframe {
+    width: 350px;
+    height: 250px;
+  }
+  .contactSlogan h3 {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 992px) {
+  .navbar .sitename {
+    left: 1rem;
+    width: 80%;
+  }
+  .navbarLink {
+    right: 1rem;
+  }
+  .navbarLinkList.mobile {
+    right: -1rem;
+  }
+  .contactUsInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .contactForm,
+  .companyDetails {
+    width: 100%;
+  }
+  .contactForm .contactFormInput input {
+    width: 18rem;
+  }
+  .contactForm .contactFormInput textArea {
+    width: 36rem;
+  }
+  iframe {
+    width: 600px;
+    height: 450px;
+  }
+  .chooseReasons {
+    width: 100%;
+  }
+  .chooseReasons .chooseReason i {
+    font-size: 3rem;
+  }
+  .chooseReasons .chooseReason h2 {
+    font-size: 1rem;
+  }
+  .chooseReasons .chooseReason p {
+    font-size: 0.8rem;
+  }
+  .survey {
+    height: 50rem;
+  }
+  .survey h2 {
+    font-size: 1.2rem;
+  }
+  .survey h4 {
+    font-size: 1.5rem;
+  }
+  .survey .surveyQuestions {
+    font-size: 1.2rem;
+    margin: 0.1rem 0;
+    width: 80%;
+  }
+  .stepContainer .stepCurrent {
+    border: 0.15rem solid #015b86;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2.5rem;
+    font-size: 1rem;
+  }
+  .stepContainer .step {
+    border: 0.15rem solid #e0e0e0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 2.5rem;
+    font-size: 1rem;
+  }
+  .stepContainer .line {
+    width: 4rem;
+  }
+  .stepContainer .lineLink {
+    width: 4rem;
+  }
+  .button_container {
+    width: 80%;
+  }
+  .button_container .step_button {
+    width: 6rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+  .button_container .step_button_active {
+    width: 6rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+  .article {
+    width: 90%;
+  }
+  .article h2 {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    -webkit-text-stroke: 0.8px #015b86;
+  }
+  .article p {
+    font-size: 1rem;
+  }
+  .workWithReasons {
+    height: 40rem;
+  }
+  .workWithReasons .subTitle {
+    font-size: 1.2rem;
+  }
+  .workWithReasons .workWithReasonsQuestion {
+    font-size: 1.5rem;
+  }
+  .workWithReasons .workWithReasonCtn .workWithReason i {
+    font-size: 3rem;
+  }
+  .workWithReasons .workWithReasonCtn .workWithReason h2 {
+    font-size: 1rem;
+  }
+  .workWithReasons .workWithReasonCtn .workWithReason p {
+    font-size: 1rem;
+  }
+  .socialMedia {
+    width: 90%;
+    height: 18rem;
+  }
+  .socialMedia .twitterlogo {
+    margin: 1rem;
+  }
+  .socialMedia .youtubelogo {
+    margin: 1rem;
+  }
+  .socialMedia .facebooklogo {
+    margin: 1rem;
+  }
+  .socialMedia .twitterFollowers,
+  .socialMedia .youtubeFollowers,
+  .socialMedia .facebookFollowers {
+    font-size: 2rem;
+    margin: 1rem;
+  }
+  .socialMedia .twitterDes,
+  .socialMedia .youtubeDes,
+  .socialMedia .facebookDes {
+    font-size: 1rem;
+    margin: 1rem;
+  }
+  .contactSlogan h3 {
+    font-size: 1.2rem;
+  }
+  .contactSlogan .phoneBtn {
+    height: 4rem;
+    width: 15rem;
+    font-size: 1.5rem;
+  }
+  .aboutUsInfo {
+    width: 90%;
+    font-size: 1.2rem;
+    padding: 1rem;
+    line-height: 1.5rem;
+  }
+  .teamMembers {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .teamMember {
+    height: 15rem;
+  }
+  .teamMemberInfo {
+    padding: 0 1rem;
+  }
+  .teamMemberInfo .teamMemberName {
+    font-size: 1.5rem;
+  }
+  .teamMemberInfo .teamMemberTitle {
+    font-size: 1rem;
+  }
+  .teamMemberInfo .teamMemberTitle::before {
+    font-size: 0.8rem;
+  }
+  .teamMemberInfo .teamMemberLinkedin,
+  .teamMemberInfo .teamMemberBlog,
+  .teamMemberInfo .teamMemberGithub {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .contactForm .contactFormInput input {
+    width: 12rem;
+  }
+  .contactForm .contactFormInput textArea {
+    width: 30rem;
+  }
+  iframe {
+    width: 400px;
+    height: 280px;
+  }
+  .navbar .sitename {
+    font-size: 1.5rem;
+    width: 55%;
+  }
+  .navbarLink {
+    right: 1rem;
+    width: 40%;
+  }
+  .picContainer {
+    height: 18rem;
+    background-position: 100% 100%;
+  }
+  .picContainer h1 {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+  .picContainer h2 {
+    font-size: 1.5rem;
+    line-height: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+  .picContainer p {
+    font-size: 1rem;
+    line-height: 0.8rem;
+  }
+  .quoteBtn {
+    width: 12rem;
+    height: 3.5rem;
+    font-size: 1rem;
+  }
+  .survey {
+    height: 45rem;
+  }
+  .survey h2 {
+    font-size: 1rem;
+  }
+  .survey h4 {
+    font-size: 1.2rem;
+  }
+  .survey .surveyQuestions {
+    font-size: 1rem;
+  }
+  .stepContainer .stepCurrent {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+  }
+  .stepContainer .step {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+  }
+  .stepContainer .line {
+    width: 3rem;
+  }
+  .stepContainer .lineLink {
+    width: 3rem;
+  }
+  .button_container .step_button {
+    width: 5rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+  .button_container .step_button_active {
+    width: 5rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+  .article h2 {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    -webkit-text-stroke: 0.5px #015b86;
+  }
+  .article p {
+    font-size: 0.8rem;
+  }
+  .workWithReasons {
+    height: 35rem;
+  }
+  .workWithReasons .subTitle {
+    font-size: 1rem;
+  }
+  .workWithReasons .workWithReasonsQuestion {
+    font-size: 1.2rem;
+  }
+  .workWithReasons .workWithReasonCtn .workWithReason i {
+    font-size: 2.5rem;
+  }
+  .workWithReasons .workWithReasonCtn .workWithReason h2 {
+    font-size: 0.8rem;
+  }
+  .workWithReasons .workWithReasonCtn .workWithReason p {
+    font-size: 0.8rem;
+  }
+  .socialMedia {
+    height: 18rem;
+  }
+  .socialMedia .twitterlogo {
+    margin: 1rem;
+  }
+  .socialMedia .youtubelogo {
+    margin: 1rem;
+  }
+  .socialMedia .facebooklogo {
+    margin: 1rem;
+  }
+  .socialMedia .twitterFollowers,
+  .socialMedia .youtubeFollowers,
+  .socialMedia .facebookFollowers {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+  .socialMedia .twitterDes,
+  .socialMedia .youtubeDes,
+  .socialMedia .facebookDes {
+    font-size: 0.8rem;
+    margin: 1rem;
+  }
+  .contactSlogan h3 {
+    font-size: 1rem;
+  }
+  .contactSlogan .phoneBtn {
+    height: 3rem;
+    width: 10rem;
+    font-size: 1.2rem;
+  }
+  .contentDescBlock {
+    width: 90%;
+    margin: 1rem auto;
+  }
+  .contentDescBlock h3 {
+    font-size: 1.5rem;
+  }
+  .contentDescBlock h2 {
+    font-size: 1rem;
+  }
+  .contentDescBlock .contentDescDetail {
+    display: flex;
+    flex-direction: column;
+  }
+  .contentDescBlock .contentDescDetail h4 {
+    font-size: 1rem;
+  }
+  .contentDescBlock .contentDescDetail p {
+    font-size: 0.8rem;
+  }
+  .contentDescBlock .contentDescDetail div {
+    width: 100%;
+    padding: 0rem;
+  }
+  .contentDescBlock .contentDescDetail div ul {
+    -webkit-padding-start: 0px;
+    padding-inline-start: 0px;
+    list-style: none;
+    font-size: 0.8rem;
+  }
+  .contentDescBlock .contentDescDetail .contactUsBtn {
+    width: 100%;
+    height: 2.5rem;
+  }
+  .contentDescBlock .contentDescDetail .contactUsBtn a {
+    font-size: 0.8rem;
+  }
+  .contentPic {
+    margin: 1rem auto;
+    width: 100%;
+    height: 10rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+  .foot {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+  }
+}
+@media screen and (max-width: 576px) {
+  .contactForm .contactFormInput input {
+    width: 8rem;
+  }
+  .contactForm .contactFormInput textArea {
+    width: 18rem;
+  }
+  iframe {
+    width: 300px;
+    height: 200px;
+  }
+  .navbar .sitename {
+    font-size: 1.2rem;
+    width: 55%;
+  }
+  .navbarLink {
+    font-size: 1rem;
+  }
+  .navbarLink .navDropdownList li a {
+    font-size: 1rem;
+  }
+  .picContainer {
+    height: 15rem;
+    background-position: 100% 100%;
+  }
+  .picContainer h1 {
+    font-size: 1.2rem;
+    letter-spacing: 0rem;
+  }
+  .picContainer h2 {
+    font-size: 1rem;
+    line-height: 0rem;
+    margin-bottom: 0rem;
+  }
+  .picContainer p {
+    width: 90%;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+  }
+  .quoteBtn {
+    width: 10rem;
+    height: 2.5rem;
+    font-size: 0.8rem;
+  }
+  .chooseReasons {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    height: 40rem;
+  }
+  .chooseReasons .chooseReason {
+    height: 33.33%;
+  }
+  .survey h2 {
+    font-size: 1rem;
+  }
+  .survey h4 {
+    font-size: 1rem;
+  }
+  .survey .surveyQuestions {
+    font-size: 1rem;
+  }
+  .stepContainer .line {
+    width: 1.5rem;
+  }
+  .stepContainer .lineLink {
+    width: 1.5rem;
+  }
+  .contactForm {
+    margin: 0;
+  }
+  .contactForm h2 {
+    font-size: 1.2rem;
+  }
+  .contactForm p {
+    font-size: 0.8rem;
+  }
+  .contactForm .contactFormInput {
+    font-size: 0.8rem;
+  }
+  .contactForm .contactFormInput label {
+    margin-bottom: 0.5rem;
+  }
+  .contactForm .contactFormInput label::after {
+    margin-left: 0.2rem;
+  }
+  .contactForm .contactFormInput input {
+    width: 20rem;
+    font-size: 0.8rem;
+  }
+  .contactForm .contactFormInput textArea {
+    width: 20rem;
+    font-size: 0.8rem;
+  }
+  .contactForm .contactFormInput fieldset {
+    flex-direction: column;
+    margin-bottom: 0rem;
+  }
+  .companyDetails {
+    margin: 0;
+  }
+  .companyDetails h2 {
+    font-size: 1.2rem;
+  }
+  .companyDetails p {
+    font-size: 0.8rem;
+  }
+  .companyDetails a {
+    text-decoration: none;
+    color: #015b86;
+  }
+  .article h2 {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    -webkit-text-stroke: 0.5px #015b86;
+  }
+  .article p {
+    font-size: 0.8rem;
+  }
+  .workWithReasons {
+    padding: 0 1%;
+    height: 55rem;
+  }
+  .workWithReasons .workWithReasonCtn {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .workWithReasons .workWithReasonCtn .workWithReason {
+    width: 90%;
+    height: 15rem;
+    margin: 0;
+    padding-top: 0rem;
+    justify-content: center;
+  }
+  .socialMedia {
+    height: 15rem;
+  }
+  .socialMedia .twitterlogo {
+    margin: 0.8rem;
+  }
+  .socialMedia .youtubelogo {
+    margin: 0.8rem;
+  }
+  .socialMedia .facebooklogo {
+    margin: 0.8rem;
+  }
+  .socialMedia .twitterFollowers,
+  .socialMedia .youtubeFollowers,
+  .socialMedia .facebookFollowers {
+    font-size: 1rem;
+    margin: 0.8rem;
+  }
+  .socialMedia .twitterDes,
+  .socialMedia .youtubeDes,
+  .socialMedia .facebookDes {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 0.8rem;
+  }
+  .contactSlogan {
+    height: 10rem;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contactSlogan h3 {
+    font-size: 0.8rem;
+  }
+  .contactSlogan .phoneBtn {
+    height: 3rem;
+    width: 8rem;
+    font-size: 0.8rem;
+  }
+  .aboutUsInfo {
+    width: 90%;
+    font-size: 1rem;
+    padding: 0.8rem;
+    line-height: 1rem;
+  }
+  .teamMembers {
+    width: 90%;
+  }
+  .teamMember {
+    height: 10rem;
+    margin: 0.5rem;
+  }
+  .teamMember .avatar {
+    border: 0.2rem solid #2a2a72;
+    height: 5rem;
+    width: 5rem;
+    margin: 0.5rem;
+  }
+  .teamMemberInfo {
+    padding: 0 0.5rem;
+  }
+  .teamMemberInfo .teamMemberName {
+    font-size: 1.2rem;
+  }
+  .teamMemberInfo .teamMemberTitle {
+    font-size: 1rem;
+  }
+  .teamMemberInfo .teamMemberTitle::before {
+    font-size: 0.8rem;
+  }
+  .teamMemberInfo .teamMemberLinkedin,
+  .teamMemberInfo .teamMemberBlog,
+  .teamMemberInfo .teamMemberGithub {
+    font-size: 1.2rem;
+  }
+  .foot {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+  }
 }

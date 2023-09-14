@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import IndexPage from "./Page/IndexPage";
+import ContactPage from "./Page/ContactPage";
+import AboutPage from "./Page/AboutPage";
+import ConsultantsPage from "./Page/ServicesPage/ConsultantsPage";
+import SupportPage from "./Page/ServicesPage/SupportPage";
+import BackupsolutionPage from "./Page/ServicesPage/BackupsolutionPage";
+import ManageditPage from "./Page/ServicesPage/ManageditPage";
+import ProcurementPage from "./Page/ServicesPage/ProcurementPage";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import BasicInfoContext from "./store/BasicInfoContext";
 
 function App() {
+  const [basicInfo, setBasicInfo] = useState({
+    officeAddress: "123, 456 one road, Sydney 2000",
+    phone: "1300 123 456",
+    Email: "jamiechen726@gmail.com",
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BasicInfoContext.Provider value={{ ...basicInfo }}>
+      <div className="App">
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<IndexPage />}></Route>
+          <Route path="/index" element={<IndexPage />}></Route>
+          <Route path="/contact" element={<ContactPage />}></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
+          <Route
+            path="/services/consultants"
+            element={<ConsultantsPage />}
+          ></Route>
+          <Route path="/services/support" element={<SupportPage />}></Route>
+          <Route
+            path="/services/backupsolution"
+            element={<BackupsolutionPage />}
+          ></Route>
+          <Route path="/services/managedit" element={<ManageditPage />}></Route>
+          <Route
+            path="/services/procurement"
+            element={<ProcurementPage />}
+          ></Route>
+        </Routes>
+
+        <Footer />
+      </div>
+    </BasicInfoContext.Provider>
   );
 }
 
