@@ -4,8 +4,16 @@ import BasicInfoContext from "../store/BasicInfoContext";
 
 const PicContainer = (props) => {
   const ctx = useContext(BasicInfoContext);
+
   return (
-    <figure className={`picContainer ${props.content.picClass}`}>
+    <figure
+      className={`picContainer ${props.content.picClass}`}
+      style={
+        ctx.isMobileNavOpenResult
+          ? { marginTop: "18rem" }
+          : { marginTop: "8rem" }
+      }
+    >
       {props.content.h1Content && <h1>{props.content.h1Content}</h1>}
       {props.content.h2Content && <h2>{props.content.h2Content}</h2>}
       {props.content.pContent && <p>{props.content.pContent}</p>}

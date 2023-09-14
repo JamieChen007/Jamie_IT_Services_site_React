@@ -264,6 +264,7 @@ body {
   align-items: center;
   color: white;
   z-index: 0;
+  transition: margin-top 0.8s ease-in-out;
 }
 .picContainer::before {
   width: 100%;

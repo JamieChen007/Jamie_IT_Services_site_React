@@ -19,10 +19,16 @@ function App() {
     Email: "jamiechen726@gmail.com",
   });
 
+  const [isMobileNavOpenResult, setIsMobileNavOpenResult] = useState();
+
+  const setIsMobileNavOpen = (value) => {
+    setIsMobileNavOpenResult(value);
+  };
+
   return (
-    <BasicInfoContext.Provider value={{ ...basicInfo }}>
+    <BasicInfoContext.Provider value={{ ...basicInfo, isMobileNavOpenResult }}>
       <div className="App">
-        <Navbar />
+        <Navbar setIsMobileNavOpen={setIsMobileNavOpen} />
 
         <Routes>
           <Route path="/" element={<IndexPage />}></Route>

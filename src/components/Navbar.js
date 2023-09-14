@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useMatch } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [isNavDropdownListOpen, setIsNavDropDownListOpen] = useState(false);
   const [isNavbarLinkListShow, setIsNavbarLinkListShow] = useState(true);
   const [isNavMobileBtnShow, setIsNavMobileBtnShow] = useState(false);
@@ -9,6 +9,12 @@ const Navbar = () => {
   const [navBarLinkListStyle, setNavBarLinkListStyle] = useState({
     top: "8rem",
   });
+  const [isNavbarLinkListMobile, setIsNavbarLinkListMobile] = useState(false);
+
+  useEffect(() => {
+    props.setIsMobileNavOpen(isNavbarLinkListMobile);
+  }, [isNavbarLinkListMobile]);
+
   const match =
     useMatch("/services/consultants") +
     useMatch("/services/support") +
@@ -58,8 +64,6 @@ const Navbar = () => {
   useEffect(() => {
     handleResize();
   }, []);
-
-  const [isNavbarLinkListMobile, setIsNavbarLinkListMobile] = useState(false);
 
   const navMobileBtnClickHandler = () => {
     setIsNavbarLinkListMobile(!isNavbarLinkListMobile);
