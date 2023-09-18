@@ -21,7 +21,6 @@ const SocialMediaCounter = () => {
           setFacebookFollowers(currNum);
           break;
       }
-
       if (currNum === target) {
         clearInterval(interval);
       }

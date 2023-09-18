@@ -24,10 +24,13 @@ const TeamMember = (props) => {
     }
   };
 
-  window.addEventListener("scroll", moduleShow);
-
   useEffect(() => {
+    window.addEventListener("scroll", moduleShow);
     moduleShow();
+
+    return () => {
+      window.removeEventListener("scroll", moduleShow);
+    };
   }, []);
 
   return (

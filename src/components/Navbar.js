@@ -58,12 +58,17 @@ const Navbar = (props) => {
     }
   };
 
-  window.addEventListener("resize", handleResize);
-  window.addEventListener("scroll", handleScroll);
-
   useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
+
     handleResize();
-  }, []);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [window.scrollY]);
 
   const navMobileBtnClickHandler = () => {
     setIsNavbarLinkListMobile(!isNavbarLinkListMobile);
