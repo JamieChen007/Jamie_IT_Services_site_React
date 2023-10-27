@@ -18,6 +18,8 @@ const SurveryQuestion = (props) => {
                 name={props.content.name}
                 key={answerOption}
                 content={answerOption}
+                selected={props.selected}
+                getSelected={props.getSelected}
               />
             );
           })}

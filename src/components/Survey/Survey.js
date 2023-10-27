@@ -27,6 +27,21 @@ const Survey = (props) => {
     }
   };
 
+  const [selected, setSelected] = useState([]);
+
+  const getSelected = (value, isCheck) => {
+    if (isCheck) {
+      setSelected([...selected, value]);
+      return;
+    }
+    if (!isCheck) {
+      const index = selected.indexOf(value);
+      selected.splice(index, 1);
+      setSelected(selected);
+      return;
+    }
+  };
+
   return (
     <section className="survey">
       <h2>{props.content.h2Content}</h2>
@@ -35,7 +50,8 @@ const Survey = (props) => {
       <div className="surveyQuestions">
         <SurveryQuestion
           contactForm={isContactFormShow}
-          key={props.content.surveyQuestions[index]}
+          selected={selected}
+          getSelected={getSelected}
           content={props.content.surveyQuestions[index]}
         />
       </div>
