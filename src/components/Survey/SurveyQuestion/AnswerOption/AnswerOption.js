@@ -5,14 +5,17 @@ const AnswerOption = (props) => {
 
   const handleChange = (e) => {
     setIsCheck(!isCheck);
-    props.getSelected(e.target.value, !isCheck);
+    props.getOption(e.target.value, !isCheck);
   };
 
   useEffect(() => {
-    if (props.selected.includes(props.content)) {
+    if (
+      props.selectedOptions &&
+      props.selectedOptions.includes(props.content)
+    ) {
       setIsCheck(true);
     }
-  }, [props.selected]);
+  }, [props.selectedOptions, props.content]);
 
   return (
     <div className="answerOption">

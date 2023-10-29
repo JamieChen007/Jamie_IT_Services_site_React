@@ -27,19 +27,56 @@ const Survey = (props) => {
     }
   };
 
-  const [selected, setSelected] = useState([]);
+  // store all question + final selected options
+  const [questionWithOptions, setQuestionWithOptions] = useState({});
 
-  const getSelected = (value, isCheck) => {
-    if (isCheck) {
-      setSelected([...selected, value]);
+  // call back function to get selected options and setState
+  const getQuestionWithOption = (question, options) => {
+    setQuestionWithOptions((prev) => ({
+      ...questionWithOptions,
+      [question]: options,
+    }));
+  };
+
+  // store contactFormInfo
+  const [contactFormInfo, setContactFormInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  // call back function to get selected options and setState
+  const getContactForm = (value) => {
+    setContactFormInfo(value);
+  };
+
+  // validate form data, return all empty fields as an array
+  const validateForm = () => {
+    return Object.keys(contactFormInfo).filter(
+      (key) =>
+        contactFormInfo[key] === undefined ||
+        contactFormInfo[key] === null ||
+        contactFormInfo[key] === ""
+    );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validateResult = validateForm();
+    if (validateResult.length > 0) {
+      alert(`${validateResult} is required`);
       return;
     }
-    if (!isCheck) {
-      const index = selected.indexOf(value);
-      selected.splice(index, 1);
-      setSelected(selected);
-      return;
-    }
+
+    alert(
+      "Your submit data is: " +
+        JSON.stringify(questionWithOptions) +
+        JSON.stringify(contactFormInfo)
+    );
+    //fetch api and submit data
   };
 
   return (
@@ -49,10 +86,12 @@ const Survey = (props) => {
       <StepContainer stepNum={index} />
       <div className="surveyQuestions">
         <SurveryQuestion
-          contactForm={isContactFormShow}
-          selected={selected}
-          getSelected={getSelected}
+          isContactFormShow={isContactFormShow}
           content={props.content.surveyQuestions[index]}
+          getQuestionWithOption={getQuestionWithOption}
+          questionWithOptions={questionWithOptions}
+          getContactForm={getContactForm}
+          contactFormInfo={contactFormInfo}
         />
       </div>
       <div className="button_container">
@@ -66,7 +105,7 @@ const Survey = (props) => {
         <button
           className="step_button_active"
           id="next"
-          onClick={nextClickHandler}
+          onClick={isContactFormShow ? handleSubmit : nextClickHandler}
         >
           {isContactFormShow ? "Submit" : "Next"}
         </button>

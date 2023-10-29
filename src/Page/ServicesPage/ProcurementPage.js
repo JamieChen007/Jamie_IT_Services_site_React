@@ -4,8 +4,20 @@ import ContentDescBlock from "../../components/ContentDescBlock/ContentDescBlock
 import Article from "../../components/Article";
 import ContactSlogan from "../../components/ContactSlogan";
 import { PROCUREMENT_CONTENT } from "../../constants/ServicesPage/ProcurementPage.Const";
+import { useEffect } from "react";
 
 const ProcurementPage = () => {
+  useEffect(() => {
+    document.title =
+      "Jamie IT Services - IT Procurement | Reliable IT Company - Free Quote";
+    document
+      .querySelector("meta[name='description']")
+      .setAttribute(
+        "content",
+        "Jamie IT provides an IT Procurement Service for Sydney companies, customised to fit each business's unique technology solution requirements."
+      );
+  }, []);
+
   return (
     <main className="mainContent">
       <PicContainer content={PROCUREMENT_CONTENT.picContainerContent} />

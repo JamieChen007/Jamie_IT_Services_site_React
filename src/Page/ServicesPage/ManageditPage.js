@@ -6,8 +6,20 @@ import Survey from "../../components/Survey/Survey";
 import WorkWithReasons from "../../components/WorkWithReasons/WorkWithReasons";
 import ContactSlogan from "../../components/ContactSlogan";
 import { MANAGEDIT_CONTENT } from "../../constants/ServicesPage/ManageditPage.Const";
+import { useEffect } from "react";
 
 const ManageditPage = () => {
+  useEffect(() => {
+    document.title =
+      "Jamie IT Services - Managed IT Services | Reliable IT Company - Free Quote";
+    document
+      .querySelector("meta[name='description']")
+      .setAttribute(
+        "content",
+        "Stay on the cutting edge with Jamie IT's managed IT services. Discover the power of seamless IT support for your Sydney business. Free Quotes."
+      );
+  }, []);
+
   return (
     <main className="mainContent">
       <PicContainer content={MANAGEDIT_CONTENT.picContainerContent} />

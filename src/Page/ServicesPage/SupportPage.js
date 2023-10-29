@@ -6,8 +6,20 @@ import ContentDescBlock from "../../components/ContentDescBlock/ContentDescBlock
 import WorkWithReasons from "../../components/WorkWithReasons/WorkWithReasons";
 import ContactSlogan from "../../components/ContactSlogan";
 import { SUPPORT_CONTENT } from "../../constants/ServicesPage/SupportPage.Const";
+import { useEffect } from "react";
 
 const SupportPage = () => {
+  useEffect(() => {
+    document.title =
+      "Jamie IT Services - Small Business IT Support | Reliable IT Company - Free Quote";
+    document
+      .querySelector("meta[name='description']")
+      .setAttribute(
+        "content",
+        "Jamie IT offers IT support to small & medium businesses across Sydney, including remote IT support, flexible backup, cloud services & office 365."
+      );
+  }, []);
+
   return (
     <main className="mainContent">
       <PicContainer content={SUPPORT_CONTENT.picContainerContent} />

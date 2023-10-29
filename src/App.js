@@ -13,11 +13,11 @@ import Footer from "./components/Footer";
 import BasicInfoContext from "./store/BasicInfoContext";
 
 function App() {
-  const [basicInfo, setBasicInfo] = useState({
+  const basicInfo = {
     officeAddress: "123, 456 one road, Sydney 2000",
     phone: "1300 123 456",
     Email: "jamiechen726@gmail.com",
-  });
+  };
 
   const [isMobileNavOpenResult, setIsMobileNavOpenResult] = useState();
 
