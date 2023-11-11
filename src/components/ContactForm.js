@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TipsModal from "./UI/TipsModal/TipsModal";
 
 const ContactForm = (props) => {
   const { contactFormInfo, simpleForm, getContactForm } = props;
@@ -17,11 +18,15 @@ const ContactForm = (props) => {
       [e.target.name]: e.target.value,
     }));
   };
-
+  const [isTipsModalShow, setIsTipsModalShow] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Your submit data is: " + JSON.stringify(formInput));
+    setIsTipsModalShow(true);
     //fetch api and submit data
+  };
+
+  const onTipsModalConfirm = () => {
+    setIsTipsModalShow(false);
   };
 
   useEffect(() => {
@@ -37,90 +42,98 @@ const ContactForm = (props) => {
   }, [simpleForm]);
 
   return (
-    <div className="contactForm">
-      {props.simpleForm ? (
-        ""
-      ) : (
-        <>
-          <h2>Contact Us</h2>
-          <p>{props.content.pContent}</p>
-        </>
+    <>
+      {isTipsModalShow && (
+        <TipsModal
+          tips={`Your submit data is: ` + JSON.stringify(formInput)}
+          onConfirm={onTipsModalConfirm}
+        />
       )}
-      <form action="#" className="contactFormInput" onSubmit={handleSubmit}>
-        <fieldset className="nameRow borderNone">
-          <div className="formFirstName">
-            <label htmlFor="firstNameInput">first name</label>
-            <input
-              type="text"
-              id="firstNameInput"
-              required
-              value={formInput.firstName}
-              name="firstName"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="formLastName">
-            <label htmlFor="lastNameInput">last name</label>
-            <input
-              type="text"
-              id="lastNameInput"
-              required
-              value={formInput.lastName}
-              name="lastName"
-              onChange={handleChange}
-            />
-          </div>
-        </fieldset>
-        <fieldset className="contactInfoRow borderNone">
-          <div className="formEmail">
-            <label htmlFor="emailInput">email</label>
-            <input
-              type="email"
-              id="emailInput"
-              required
-              value={formInput.email}
-              name="email"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="formPhone">
-            <label htmlFor="phoneInput">phone number</label>
-            <input
-              type="text"
-              id="phoneInput"
-              required
-              pattern="^[0-9]*$"
-              value={formInput.phone}
-              name="phone"
-              onChange={handleChange}
-            />
-          </div>
-        </fieldset>
-        <fieldset className="messageRow borderNone">
-          <div className="formMessage">
-            <label htmlFor="messageInput">message</label>
-            <textarea
-              id="messageInput"
-              cols="30"
-              required
-              rows="10"
-              value={formInput.message}
-              name="message"
-              onChange={handleChange}
-            ></textarea>
-          </div>
-        </fieldset>
+      <div className="contactForm">
         {props.simpleForm ? (
           ""
         ) : (
           <>
-            <div className="formSubmit">
-              <input type="submit" value="send message" />
-            </div>
+            <h2>Contact Us</h2>
+            <p>{props.content.pContent}</p>
           </>
         )}
-      </form>
-    </div>
+        <form action="#" className="contactFormInput" onSubmit={handleSubmit}>
+          <fieldset className="nameRow borderNone">
+            <div className="formFirstName">
+              <label htmlFor="firstNameInput">first name</label>
+              <input
+                type="text"
+                id="firstNameInput"
+                required
+                value={formInput.firstName}
+                name="firstName"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="formLastName">
+              <label htmlFor="lastNameInput">last name</label>
+              <input
+                type="text"
+                id="lastNameInput"
+                required
+                value={formInput.lastName}
+                name="lastName"
+                onChange={handleChange}
+              />
+            </div>
+          </fieldset>
+          <fieldset className="contactInfoRow borderNone">
+            <div className="formEmail">
+              <label htmlFor="emailInput">email</label>
+              <input
+                type="email"
+                id="emailInput"
+                required
+                value={formInput.email}
+                name="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="formPhone">
+              <label htmlFor="phoneInput">phone number</label>
+              <input
+                type="text"
+                id="phoneInput"
+                required
+                pattern="^[0-9]*$"
+                value={formInput.phone}
+                name="phone"
+                onChange={handleChange}
+              />
+            </div>
+          </fieldset>
+          <fieldset className="messageRow borderNone">
+            <div className="formMessage">
+              <label htmlFor="messageInput">message</label>
+              <textarea
+                id="messageInput"
+                cols="30"
+                required
+                rows="10"
+                value={formInput.message}
+                name="message"
+                onChange={handleChange}
+              ></textarea>
+            </div>
+          </fieldset>
+          {props.simpleForm ? (
+            ""
+          ) : (
+            <>
+              <div className="formSubmit">
+                <input type="submit" value="send message" />
+              </div>
+            </>
+          )}
+        </form>
+      </div>
+    </>
   );
 };
 

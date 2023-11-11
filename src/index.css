@@ -27,6 +27,72 @@ body {
   padding: 0;
   font-family: barlow, sans-serif;
   overflow-x: hidden;
+  position: relative;
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.tipsModal {
+  width: 800px;
+  height: 400px;
+  background-color: #fff;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-flow: column;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.tipsText {
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tipsText p {
+  font-size: 20px;
+  height: 300px;
+  width: 90%;
+  word-wrap: break-word;
+}
+
+.confirmBtns {
+  flex: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.confirmBtns button {
+  margin: 0 10px;
+  border: 0;
+  width: 100px;
+  background-color: bisque;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 10px;
+  transition: 1s;
+}
+
+.confirmBtns .confirmBtn {
+  background-color: #d62828;
+  color: #fff;
+}
+
+.confirmBtns button:hover {
+  background-color: #194b49;
 }
 
 .navbar {
